@@ -1,7 +1,7 @@
 f=open("input.txt",'r')
 table=[]
 while(line:=f.readline()):
-    table.append(list(line))
+    table.append(list(line.strip('\n')))
 f.close()
 
 def find(array,x,y):
@@ -19,7 +19,7 @@ def find(array,x,y):
         return 1
     return 0
 counter=0
-for x in range(len(table)-2):
+for x in range(len(table[0])-2):
     for y in range(len(table)-2):
         counter+=find(table,x+1,y+1)
 print(counter)
