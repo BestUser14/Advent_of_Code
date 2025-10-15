@@ -32,7 +32,9 @@ class bots():
 			self.table[i.pos[1]][i.pos[0]]+=1
 	def print_table(self):
 		for line in self.table:
-			print(line)
+			for ch in line:
+				print(int(ch),end='')
+			print('')
 	def get_quadrants(self):
 		Q1=0
 		Q2=0
@@ -57,7 +59,7 @@ def flood_find(table):
 	count = 0
 	for y in range(len(table)):
 		for x in range(len(table[y])):
-			if table[y][x] > 0:
+			if int(table[y][x]) > 0:
 				count = max(count,flood_fill(table,x,y))
 	return count
 
@@ -70,13 +72,14 @@ def flood_fill(table,x,y):
 		return 0
 	if y >= len(table):
 		return 0
-	if table[y][x] <= 0:
+	if int(table[y][x]) <= 0:
 		return 0
 	table[y][x]=0
-	count = flood_fill(table,y,x+1)
-	count += flood_fill(table,y,x-1)
-	count += flood_fill(table,y+1,x)
-	count += flood_fill(table,y-1,x)
+	count = 0
+	count += flood_fill(table,x,y+1)
+	count += flood_fill(table,x,y-1)
+	count += flood_fill(table,x+1,y)
+	count += flood_fill(table,x-1,y)
 	return 1+count
 
 sim = bots(size)
@@ -87,12 +90,13 @@ sim.generate_table()
 step_counter=0
 while True:
 	temp=flood_find(sim.table)
+	if temp > 20:
+		break
 
 	sim.do_step(1)
 	step_counter+=1
 	sim.generate_table()
-	if temp > 30:
-		break
+sim.generate_table()
 sim.print_table()
 print(temp)
 print(step_counter)
