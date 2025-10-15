@@ -1,7 +1,0 @@
-40 blinks
-real time|sys time|speed multiplier
-puzzle1.py - 1m42.143s | 0m10.956s | 1
-puzzle2_attempt_one.py - 1m17.651s | 0m0.059s | 1.31
-puzzle2_attempt_two.c - 0m1.310s | 0m0.003s | 77.9717557252
-at 75 blinks
-puzzle2_attempt_three.c -  0m0.004s | 0m0.002s | infinity
